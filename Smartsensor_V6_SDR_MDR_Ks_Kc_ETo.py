@@ -157,8 +157,8 @@ if valid_segment is not None:
     print(f"\nระยะเวลาระเหยของน้ำจากดิน: {evaporation_duration_hours:.2f} ต่อชั่วโมง")   
     peak_value = valid_segment.iloc[0]['value']
     final_value = valid_segment.iloc[-1]['value']
+#ตรวจสอบ SDR มากกว่า 2 ชม.หรือไม่
     if evaporation_duration_hours > 2:
-        # คำนวณ SDR 
         SDR = (peak_value - final_value) / evaporation_duration_hours
         print(f"อัตราการระเหยของน้ำ (SDR): {SDR:.2f} % ต่อชั่วโมง")       
         if  SDR >= 2:
@@ -170,32 +170,30 @@ if valid_segment is not None:
         else: 
             soil_type = "ข้อมูลอาจไม่ถูกต้อง"
         print(f"คุณสมบัติดิน: {soil_type}")
-
-#WP คือจุดที่พืชเริ่มเหี่ยวเพราะดินขาดน้ำ FC คือความชื้นดินสูงสุดที่ยังไม่แฉะ
-#อ้างอิงตัวเลขจาก คู่มือปฏิบัติงานวิเคราะห์สมบัติทางกายภาพของดิน ตารางที่ 7 การคำนวณความชื้นที่พืชนำไปใช้ได้จากค่า FC และ PWP หน้า 71
-#Pv คือความชื้นที่พืชดูไปใช้ได้ % โดยปริมาตร หามาจาก Pv = Pw(%นน.ดินแห้ง)*As(ความถ่วงจำเพาะ)
-#As ค่าความถ่วงจำเพาะปรากฏ ใช้ในการแปลงหน่วยความชื้นจากเปอร์เซ็นต์โดยน้ำหนักให้เป็นเปอร์เซ็นต์โดยปริมาตร
-        SOIL_PARAMS = {
-    "ดินทราย": {"FC": 0.9, "PWP": 0.4, "Pv": 0.8},  
-    "ดินร่วนปนทราย": {"FC": 0.14, "PWP": 0.6, "Pv": 0.12},
-    "ดินร่วน": {"FC": 0.22, "PWP": 0.10, "Pv": 0.17},
-    "ดินร่วนปนดินเหนียว": {"FC": 0.27, "PWP": 0.13, "Pv": 0.19},
-    "ดินเหนียว": {"FC": 0.35, "PWP": 0.17, "Pv": 0.23},
-}
-        params = SOIL_PARAMS[soil_type]
-        #หาอัตราการลดลงของความชื้นในดินต่อหน่วยเวลา วัดจากเซ็นเซอร์
+#Dr จะหาค่าความชื้นในดินที่มันลดลงใน ชม.ที่ผ่านเกณฑ์
         Dr = (SDR*evaporation_duration_hours) /100  #เทียบสัดส่วน
         print(f"Dr = {Dr:.2f} % ใน {evaporation_duration_hours:.2f} ชม. ")  
 
-        #หาอัตราการสูญเสียน้ำเฉลี่ยของดินต่อชั่วโมง 
+#หาอัตราการสูญเสียน้ำเฉลี่ยของดินต่อชั่วโมง 
         MDR = Dr / evaporation_duration_hours 
         print(f"MDR : {MDR:.2f} ชม.")
-
-        #Ks คือค่าสัมประสิทธิ์การขาดน้ำของพืช (1 = น้ำเพียงพอ, ต่ำกว่า 1 = เริ่มเครียดน้ำ)
-        #TAW คือปริมาณน้ำในดินที่พืชสามารถใช้ได้ (TAW = FC − WP)
-        #RAW ปริมาณน้ำที่พืชสามารถใช้ได้โดยไม่เกิดความเครียด (RAW = p × TAW, p คือส่วนที่พืชทนได้)
-        TAW = params['FC'] - params['PWP']
-        RAW = params['Pv'] * TAW   
+#ดึงข้อมูลในไฟล์เข้ามา
+        import json
+        with open("SOIL_PARAMS.json", "r", encoding="utf-8") as f:
+            params = json.load(f)
+        FC = params[soil_type]["FC"]
+        print(f"FC : {FC} ")
+        PWP = params[soil_type]["PWP"]
+        print(f"PWP : {PWP} ")
+        Pv = params[soil_type]["Pv"]
+        print(f"Pv : {Pv} ")
+        Realtime_Sensor = 0.39 
+        Zr = 1000
+        TAW = FC - PWP 
+        RAW = Pv * TAW   
+        Dr = (FC-Realtime_Sensor) 
+        Dr = Dr * Zr
+        print(f"Dr : {Dr}")
         #Allen(Allen et. al., 1998
         #แสดงผลค่า Ks แจ้งเตือนต่างๆ
         Ks = (TAW - Dr) / (TAW - RAW)
