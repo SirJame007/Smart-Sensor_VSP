@@ -1,0 +1,94 @@
+{
+  "ดินทราย":[ 
+        {"FC": 0.09},
+        {"PWP": 0.04},
+        {"Pv": 0.08}
+  ],
+  "ดินร่วน":[ 
+        {"FC": 0.22},
+        {"PWP": 0.10},
+        {"Pv": 0.17}
+  ],
+  "ดินเหนียว":[ 
+        {"FC": 0.35},
+        {"PWP": 0.17},
+        {"Pv": 0.23}
+  ],
+  "durian": [
+    {"age_months": "1-6", "Zr": 1500, "Kc": 0.8},
+    {"age_months": "7-12", "Zr": 2500, "Kc": 1.0},
+    {"age_months": "13-24", "Zr": 3500, "Kc": 1.1},
+    {"age_months": "25-60", "Zr": 4000, "Kc": 1.15},
+    {"age_months": "61-120", "Zr": 5000, "Kc": 1.2},
+    {"age_months": "121-240", "Zr": 6000, "Kc": 1.2}
+  ],
+  "mango": [
+    {"age_months": "1-6", "Zr": 1000, "Kc": 0.6},
+    {"age_months": "7-12", "Zr": 2000, "Kc": 0.85},
+    {"age_months": "13-24", "Zr": 2500, "Kc": 0.9},
+    {"age_months": "25-60", "Zr": 3000, "Kc": 0.95},
+    {"age_months": "61-240", "Zr": 4000, "Kc": 0.95}
+  ],
+  "rice": [
+    {"age_months": "1-2", "Zr": 200, "Kc": 0.7},
+    {"age_months": "3-4", "Zr": 500, "Kc": 1.15}
+  ],
+  "maize": [
+    {"age_months": "1-2", "Zr": 300, "Kc": 0.6},
+    {"age_months": "3-4", "Zr": 1200, "Kc": 1.2}
+  ],
+  "tomato": [
+    {"age_months": "1-2", "Zr": 300, "Kc": 0.6},
+    {"age_months": "3-4", "Zr": 1000, "Kc": 1.05}
+  ],
+  "soybean": [
+    {"age_months": "1-2", "Zr": 300, "Kc": 0.6},
+    {"age_months": "3-4", "Zr": 1000, "Kc": 1.15}
+  ],
+  "orange": [
+    {"age_months": "1-6", "Zr": 1000, "Kc": 0.6},
+    {"age_months": "7-12", "Zr": 1500, "Kc": 0.8},
+    {"age_months": "13-240", "Zr": 2000, "Kc": 0.9}
+  ],
+  "sugarcane": [
+    {"age_months": "1-6", "Zr": 500, "Kc": 0.8},
+    {"age_months": "7-12", "Zr": 1800, "Kc": 1.25}
+  ],
+  "coffee": [
+    {"age_months": "1-6", "Zr": 500, "Kc": 0.7},
+    {"age_months": "7-12", "Zr": 1500, "Kc": 1.0},
+    {"age_months": "13-240", "Zr": 2500, "Kc": 1.0}
+  ],
+  "banana": [
+    {"age_months": "1-6", "Zr": 500, "Kc": 0.7},
+    {"age_months": "7-12", "Zr": 1500, "Kc": 1.1}
+  ],
+  "potato": [
+    {"age_months": "1-2", "Zr": 200, "Kc": 0.7},
+    {"age_months": "3-4", "Zr": 600, "Kc": 1.1}
+  ],
+  "watermelon": [
+    {"age_months": "1-2", "Zr": 200, "Kc": 0.6},
+    {"age_months": "3-4", "Zr": 1000, "Kc": 0.9}
+  ],
+  "grape": [
+    {"age_months": "1-6", "Zr": 500, "Kc": 0.6},
+    {"age_months": "7-240", "Zr": 1500, "Kc": 0.75}
+  ],
+  "chili": [
+    {"age_months": "1-2", "Zr": 300, "Kc": 0.6},
+    {"age_months": "3-6", "Zr": 1000, "Kc": 1.0}
+  ],
+  "peanut": [
+    {"age_months": "1-2", "Zr": 300, "Kc": 0.6},
+    {"age_months": "3-4", "Zr": 1000, "Kc": 0.9}
+  ],
+  "cotton": [
+    {"age_months": "1-3", "Zr": 500, "Kc": 0.7},
+    {"age_months": "4-6", "Zr": 1500, "Kc": 0.85}
+  ],
+  "papaya": [
+    {"age_months": "1-6", "Zr": 1000, "Kc": 0.8},
+    {"age_months": "7-24", "Zr": 1500, "Kc": 1.15}
+  ]
+}
